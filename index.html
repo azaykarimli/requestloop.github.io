@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table for requested files</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#second").click(function () {
+                $.get("https://gist.githubusercontent.com/rzaevnicat/f4bc66b2987ab6e6a996edf0cc9bdc14/raw/2e1d15cc30651744087330bdf976d7c0d6c3f12e/test_azay", function (data_1, status_1) {
+
+
+                    var info = jQuery.parseJSON(data_1);
+
+                    $("#sec").text("Data: " + data_1 + "\nStatus: " + status);
+
+
+
+
+                    var content = "<tbody>"
+
+                    for (i = 0; i < info.users.length; i++) {
+                        content += '<tr><td>' + info.message + '</td>'
+                        content += '<td>' + info.users[i].name + '</td>'
+                        content += '<td>' + info.users[i].surname + '</td>'
+                        content += '<td>' + info.users[i].sex + '</td>'
+                        content += '<td>' + status_1 + '</td></tr>'
+
+
+                    }
+                    content += "</tbody>"
+
+                    $('table').append(content);
+
+
+
+                });
+            });
+        });
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Message</th>
+                <th>User_name</th>
+                <th>User_surname</th>
+                <th>User_sex</th>
+                <th>Status</th>
+
+            </tr>
+        </thead>
+
+    </table>
+
+
+    <p id="sec">
+        hello
+    </p>
+
+    <button id="second">Send an HTTP GET request to a page and get the result back</button>
+
+
+
+</body>
+
+</html>
